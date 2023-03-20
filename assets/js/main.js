@@ -127,24 +127,21 @@ contentEl.addEventListener('click', function (event) {
   );
 
 // Game over function
-function gameOver () {
+function gameOver() {
   timeLeftEl.textContent = timeLeft;
   headingEl.innerHTML = 'Congratulations!';
-  contentEl.innerHTML = 'Your high score is: ' + score + '.' + ' Please input your intials: ';
-  var initialsInputEl = document.createElement('input');
-    initialsEl.type = 'text';
-    initialsEl.name = 'initials';
-    initialsEl.appendChild(initialsInputEl);
-    // TODO - Create button to accept initial input and log output to the screen along with the game score
-  var initialsButtonEl = document.createElement('button');
-    initialsButtonEl.textContent('Send initials');
-  initialsEl.addEventListener('click', function (event) {
-    event.preventDefault();
-
-    initialsEl.innerHTML = initialsInputEl + ' ' + score;
-  }
-  )
-
-  // initialsEl.innerHTML = initialsInputEl + ' ' + score;
-  console.log('Game over.');
+  contentEl.innerHTML = 'Your high score is: ' + score + '.' + ' Please input your initials: ';
+  var initialsEl = document.createElement('input');
+  initialsEl.type = 'text';
+  initialsEl.name = 'initials';
+  initialsEl.id = 'initials-input';
+  contentEl.appendChild(initialsEl);
+  // Create button to accept initial input and log output to the screen along with the game score
+  var initialButtonEl = document.createElement('button');
+  initialButtonEl.textContent = 'Send initials';
+  initialButtonEl.addEventListener('click', function() {
+    var initials = document.getElementById('initials-input').value;
+    contentEl.innerHTML = 'Your score is: ' + score + ', and your initials are: ' + initials;
+  });
+  contentEl.appendChild(initialButtonEl);
 }
