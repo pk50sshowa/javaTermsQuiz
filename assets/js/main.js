@@ -38,16 +38,14 @@ var questions = [
   ];
 
 
+// Master global variables to navigate throughout the document
+
 var timeLeftEl = document.querySelector('#timeLeft');
 var headingEl = document.querySelector('#heading');
 var contentEl = document.querySelector('#content');
 var startBtnEl = document.querySelector('#start');
 var initialsEl = document.querySelector('#initials');
 var timer;
-
-// var timerElement = document.querySelector(".timer-count");
-
-// var startBtn = document.querySelector(".start-button");
 
 // Timer and score variables
 var indexofCurrentQuestion = 0;
@@ -133,10 +131,20 @@ function gameOver () {
   timeLeftEl.textContent = timeLeft;
   headingEl.innerHTML = 'Congratulations!';
   contentEl.innerHTML = 'Your high score is: ' + score + '.' + ' Please input your intials: ';
-  var initialsInputEl = document.createElement("initials");
-    initialsEl.type = "text";
-    initialsEl.name = "initials";
+  var initialsInputEl = document.createElement('input');
+    initialsEl.type = 'text';
+    initialsEl.name = 'initials';
     initialsEl.appendChild(initialsInputEl);
-  initialsEl.innerHTML = initialsInputEl + ' ' + score;
+    // TODO - Create button to accept initial input and log output to the screen along with the game score
+  var initialsButtonEl = document.createElement('button');
+    initialsButtonEl.textContent('Send initials');
+  initialsEl.addEventListener('click', function (event) {
+    event.preventDefault();
+
+    initialsEl.innerHTML = initialsInputEl + ' ' + score;
+  }
+  )
+
+  // initialsEl.innerHTML = initialsInputEl + ' ' + score;
   console.log('Game over.');
 }
