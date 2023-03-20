@@ -70,6 +70,7 @@ function renderNextQuestion() { // question => object
     }
 }
 
+// Start button event listener to begin the timer, also logic for ending the game
 
 startBtnEl.addEventListener('click', function (event) {
   timeLeftEl.textContent = timeLeft;
@@ -80,21 +81,16 @@ startBtnEl.addEventListener('click', function (event) {
     timeLeft--;
     timeLeftEl.textContent = timeLeft;
 
-    if (timeLeft === 0) {
-      // TODO build the rest of the game over logic
+    if (timeLeft <= 0) {
       clearInterval (timer);
-      clearTimeout();
-    } else if (timeLeft < 0) {
-      timeLeft === 0;
-      clearInterval (timer);
-      clearTimeout();
+      gameOver();
     }
   }
   , 1000);
   renderNextQuestion(0);
 })
 
-
+// Event listener to scroll through questions and calculate score and/or time penalties
 contentEl.addEventListener('click', function (event) {
   var currentQuestion = questions[indexofCurrentQuestion];
   console.log(indexofCurrentQuestion);
@@ -105,17 +101,35 @@ contentEl.addEventListener('click', function (event) {
     console.log (event.target.textContent);
     console.log (currentQuestion.answer);
 
-    if (event.target.textContent === currentQuestion.answer) {
-      score = score + 10;
-      console.log (score);
-      indexofCurrentQuestion++;
-      console.log (indexofCurrentQuestion);
-      renderNextQuestion[indexofCurrentQuestion];
-    } else {
-      timeLeft = timeLeft - 10;
-      indexofCurrentQuestion++;
-      console.log (indexofCurrentQuestion);
-      renderNextQuestion (questions[indexofCurrentQuestion]);
+      if (event.target.textContent === currentQuestion.answer) {
+        score = score + 10;
+        console.log (score);
+        indexofCurrentQuestion++;
+        console.log (indexofCurrentQuestion);
+        if (indexofCurrentQuestion === 5) {
+          clearInterval (timer);
+          gameOver ();
+        } else {
+        renderNextQuestion (questions   [indexofCurrentQuestion]);}
+       } else {
+        timeLeft = timeLeft - 10;
+        indexofCurrentQuestion++;
+        console.log (indexofCurrentQuestion);
+        if (indexofCurrentQuestion === 5) {
+          clearInterval (timer);
+          gameOver ();
+        } else {
+        renderNextQuestion (questions   [indexofCurrentQuestion]);}
+      }
     }
   }
-});
+  );
+
+// Game over function
+function gameOver () {
+  timeLeft === 0;
+  timeLeftEl.append = timeLeft;
+  headingEl.innerHTML = 'Congratulations!';
+  contentEl.innerHTML = 'Your high score is: ' + score + '.';
+  console.log('Game over.');
+}
