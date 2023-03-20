@@ -42,6 +42,7 @@ var timeLeftEl = document.querySelector('#timeLeft');
 var headingEl = document.querySelector('#heading');
 var contentEl = document.querySelector('#content');
 var startBtnEl = document.querySelector('#start');
+var initialsEl = document.querySelector('#initials');
 var timer;
 
 // var timerElement = document.querySelector(".timer-count");
@@ -108,6 +109,7 @@ contentEl.addEventListener('click', function (event) {
         console.log (indexofCurrentQuestion);
         if (indexofCurrentQuestion === 5) {
           clearInterval (timer);
+          timeLeft === 0;
           gameOver ();
         } else {
         renderNextQuestion (questions   [indexofCurrentQuestion]);}
@@ -117,6 +119,7 @@ contentEl.addEventListener('click', function (event) {
         console.log (indexofCurrentQuestion);
         if (indexofCurrentQuestion === 5) {
           clearInterval (timer);
+          timeLeft === 0;
           gameOver ();
         } else {
         renderNextQuestion (questions   [indexofCurrentQuestion]);}
@@ -127,9 +130,13 @@ contentEl.addEventListener('click', function (event) {
 
 // Game over function
 function gameOver () {
-  timeLeft === 0;
-  timeLeftEl.append = timeLeft;
+  timeLeftEl.textContent = timeLeft;
   headingEl.innerHTML = 'Congratulations!';
-  contentEl.innerHTML = 'Your high score is: ' + score + '.';
+  contentEl.innerHTML = 'Your high score is: ' + score + '.' + ' Please input your intials: ';
+  var initialsInputEl = document.createElement("initials");
+    initialsEl.type = "text";
+    initialsEl.name = "initials";
+    initialsEl.appendChild(initialsInputEl);
+  initialsEl.innerHTML = initialsInputEl + ' ' + score;
   console.log('Game over.');
 }
