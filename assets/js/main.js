@@ -1,7 +1,4 @@
-// Variables for HTML
-
-// list of all questions, choices, and answers
-
+// List of all questions, choices, and answers
 var questions = [
     {
       title: 'Commonly used data types DO NOT include:',
@@ -39,7 +36,6 @@ var questions = [
 
 
 // Master global variables to navigate throughout the document
-
 var timeLeftEl = document.querySelector('#timeLeft');
 var headingEl = document.querySelector('#heading');
 var contentEl = document.querySelector('#content');
@@ -53,9 +49,8 @@ var timeLeft = 60;
 var score = 0;
 var currentQuestion = questions[indexofCurrentQuestion];
 
-// function to render the next question
-
-function renderNextQuestion() { // question => object
+// Function to render the next question
+function renderNextQuestion() {
   contentEl.innerHTML = '';
     var currentQuestion = questions[indexofCurrentQuestion];
 
@@ -70,7 +65,6 @@ function renderNextQuestion() { // question => object
 }
 
 // Start button event listener to begin the timer, also logic for ending the game
-
 startBtnEl.addEventListener('click', function (event) {
   timeLeftEl.textContent = timeLeft;
   
